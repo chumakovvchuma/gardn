@@ -1,4 +1,4 @@
-import { PlantStageEventData, PlantStage } from '../../../generated';
+import { PlantStageEventData, PlantStage, Environment } from '../../../generated';
 
 /**
  * DB PlantStage change Event Data has two associations for different plantStage's
@@ -6,6 +6,8 @@ import { PlantStageEventData, PlantStage } from '../../../generated';
  */
 export interface DBPlantStageEventData extends Omit<PlantStageEventData, '__typename'> {
   __typename?: 'DBPlantStageEventData',
-  previousPlantStageId: PlantStage['id'],
-  nextPlantStageId: PlantStage['id']
+  previousPlantStageId?: PlantStage['id'],
+  plantStageId: PlantStage['id'],
+  previousEnvironmentId?: Environment['id'],
+  environmentId?: Environment['id']
 }

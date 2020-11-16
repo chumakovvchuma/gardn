@@ -4,7 +4,9 @@ type PlantStage implements BaseDbModel {
   
   name: String!
   description: String
-  environment: Environment
+
+  defaultEstimateLength: Int
+  defaultEnvironment: Environment
 }
 
 type Query {

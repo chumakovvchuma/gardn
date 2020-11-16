@@ -55,8 +55,8 @@ const StyledWaterDropletIcon = styled.div`
   margin-right: 1px;
 `;
 
-export const PlantRecentEventsIcons = ({ plant, events, lightChangeEvents, waterEvents }: GetPlantRecentEventsAndCurrentStageEnvironmentQuery) => {
-  if (plant === undefined || (events.length === 0 && lightChangeEvents.length === 0 && waterEvents.length === 0)) {
+export const PlantRecentEventsIcons = ({ currentEnvironment, events, lightChangeEvents, waterEvents }: GetPlantRecentEventsAndCurrentStageEnvironmentQuery) => {
+  if (events.length === 0 && lightChangeEvents.length === 0 && waterEvents.length === 0) {
     return null
   }
 
@@ -84,11 +84,11 @@ export const PlantRecentEventsIcons = ({ plant, events, lightChangeEvents, water
   }
 
   const eventTypeNeedsAttention = (eventType: EventType): boolean => {
-    if (plant?.currentPlantStage?.environment == undefined) {
+    if (currentEnvironment === null || currentEnvironment[0].data.__typename !== 'PlantStageEventData') {
       return false // no data to compare against as to determine if event type needs attention
     }
 
-    const { currentPlantStage: { environment } } = plant
+    const { environment } = currentEnvironment[0].data
 
     if (eventType === EventType.LightChange) {
       return doesLightNeedAttention(lightChangeEvents, environment);

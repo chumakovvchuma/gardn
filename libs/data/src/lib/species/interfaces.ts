@@ -16,5 +16,6 @@ import { Species, PlantStage, BaseDbModel, Environment } from './../generated';
 export interface DBSpeciesPlantStages extends BaseDbModel {
   speciesId: Species['id'],
   plantStageId: PlantStage['id'],
-  environmentId: Environment['id']
+  environmentId: Environment['id'],
+  estimatePlantStageLength: number // stored in hours, ui represents in days ie `1.2 days until Sprouting`
 }

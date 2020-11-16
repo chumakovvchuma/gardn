@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
-import { useGetPlantRecentEventsAndCurrentStageEnvironmentLazyQuery, EventType } from '@gardn/data';
+import { useGetPlantRecentEventsAndCurrentStageEnvironmentLazyQuery } from '@gardn/data';
 import { PlantRecentEventsIcons as PlantRecentEventsIconsUi } from '@gardn/plant/ui';
 
 /**
@@ -27,7 +27,7 @@ export const PlantRecentEventsIcons = () => {
     return <div>Loading</div>
   }
 
-  return <PlantRecentEventsIconsUi events={data.events} plant={data.plant} lightChangeEvents={data.lightChangeEvents} waterEvents={data.waterEvents} />
+  return <PlantRecentEventsIconsUi events={data.events} currentEnvironment={data.currentEnvironment} lightChangeEvents={data.lightChangeEvents} waterEvents={data.waterEvents} />
 };
 
 export default PlantRecentEventsIcons;

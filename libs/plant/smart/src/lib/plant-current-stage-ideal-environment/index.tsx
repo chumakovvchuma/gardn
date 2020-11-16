@@ -26,7 +26,7 @@ export const PlantCurrentStageIdealEnvironment = () => {
     return <div>Loading</div>
   }
 
-  return <PlantCurrentStageIdealEnvironmentUi plant={data.plant} /> 
+  return <PlantCurrentStageIdealEnvironmentUi data={data.currentEnvironment[0].data} />
 };
 
 export default PlantCurrentStageIdealEnvironment;

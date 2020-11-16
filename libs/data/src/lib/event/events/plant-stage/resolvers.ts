@@ -14,11 +14,29 @@ export const plantStageEventDataResolvers: Resolvers = {
 
       return null
     },
-    nextPlantStage: ({ id }, _, { dataSources }) => {
+    plantStage: ({ id }, _, { dataSources }) => {
       const plantStageEventDataRecord = dataSources.plantStageEventData.byId({ id })
 
-      if (plantStageEventDataRecord.nextPlantStageId) {
-        return dataSources.plantStage.byId({ id: plantStageEventDataRecord.nextPlantStageId })
+      if (plantStageEventDataRecord.plantStageId) {
+        return dataSources.plantStage.byId({ id: plantStageEventDataRecord.plantStageId })
+      }
+
+      return null
+    },
+    previousEnvironment: ({ id }, _, { dataSources }) => {
+      const plantStageEventDataRecord = dataSources.plantStageEventData.byId({ id })
+
+      if (plantStageEventDataRecord.previousEnvironmentId) {
+        return dataSources.environment.byId({ id: plantStageEventDataRecord.previousEnvironmentId })
+      }
+
+      return null
+    },
+    environment: ({ id }, _, { dataSources }) => {
+      const plantStageEventDataRecord = dataSources.plantStageEventData.byId({ id })
+
+      if (plantStageEventDataRecord.environmentId) {
+        return dataSources.environment.byId({ id: plantStageEventDataRecord.environmentId })
       }
 
       return null

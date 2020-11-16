@@ -45,15 +45,6 @@ export const plantResolvers: Resolvers = {
       }
 
       return null;
-    },
-    currentPlantStage: ({ id }, _, { dataSources }) => {
-      const plant = dataSources.plant.byId({ id })
-
-      if (plant.currentPlantStageId) {
-        return dataSources.plantStage.byId({ id: plant.currentPlantStageId });
-      }
-
-      return null;
     }
   },
   Mutation: {

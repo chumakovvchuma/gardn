@@ -3,7 +3,10 @@ type PlantStageEventData implements BaseEventData {
   dateCreated: Timestamp!
 
   previousPlantStage: PlantStage
-  nextPlantStage: PlantStage
+  plantStage: PlantStage
+
+  previousEnvironment: Environment
+  environment: Environment
 
   eventTime: Timestamp!
 }

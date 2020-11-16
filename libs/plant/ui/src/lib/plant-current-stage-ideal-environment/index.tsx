@@ -38,57 +38,55 @@ const IconContainer = styled.div`
   text-align: center;
 `
 
-export const PlantCurrentStageIdealEnvironment = ({ plant }: GetPlantCurrentPlantStageEnvironmentQuery) => {
-  if (!plant) {
+export const PlantCurrentStageIdealEnvironment = ({ data }: Pick<GetPlantCurrentPlantStageEnvironmentQuery['currentEnvironment'][number], 'data'>) => {  
+  if (!data || data.__typename !== 'PlantStageEventData') {
     return (
       <FlexBox>
-        404 / No Plant
+        404 / Missing Environment
       </FlexBox>
     )
   }
 
+  const { environment } = data
   let water, temperature, humidity, light, pH, electricalConductivity;
-  if (plant.currentPlantStage?.environment) {
-    const env = plant.currentPlantStage.environment;
 
-    water = env.idealWaterAmount ? env.idealWaterAmount + abbreviate(env.idealWaterAmountUnit) + ' / ' + env.idealWaterAmountPerTimePeriod + abbreviate(env.idealWaterAmountPerTimePeriodUnit) : ''
-    
-    temperature = env.idealTemperatureMin ? env.idealTemperatureMin + ' ' + abbreviate(env.idealTemperatureMinUnit) : ''
-    if (env.idealTemperatureMin && env.idealTemperatueMax) {
-      temperature += ' - '
-    }
-    if (env.idealTemperatueMax) {
-      temperature += env.idealTemperatueMax + ' ' + abbreviate(env.idealTemperatureMaxUnit)
-    }
+  water = environment.idealWaterAmount ? environment.idealWaterAmount + abbreviate(environment.idealWaterAmountUnit) + ' / ' + environment.idealWaterAmountPerTimePeriod + abbreviate(environment.idealWaterAmountPerTimePeriodUnit) : ''
+  
+  temperature = environment.idealTemperatureMin ? environment.idealTemperatureMin + ' ' + abbreviate(environment.idealTemperatureMinUnit) : ''
+  if (environment.idealTemperatureMin && environment.idealTemperatueMax) {
+    temperature += ' - '
+  }
+  if (environment.idealTemperatueMax) {
+    temperature += environment.idealTemperatueMax + ' ' + abbreviate(environment.idealTemperatureMaxUnit)
+  }
 
-    humidity = env.idealHumidityMin ? env.idealHumidityMin + ' ' + abbreviate(env.idealHumidityMinUnit) : ''
-    if (env.idealHumidityMin && env.idealHumidityMax) {
-      humidity += ' - '
-    }
-    if (env.idealHumidityMax) {
-      humidity += env.idealHumidityMax + ' ' + abbreviate(env.idealHumidityMaxUnit)
-    }
+  humidity = environment.idealHumidityMin ? environment.idealHumidityMin + ' ' + abbreviate(environment.idealHumidityMinUnit) : ''
+  if (environment.idealHumidityMin && environment.idealHumidityMax) {
+    humidity += ' - '
+  }
+  if (environment.idealHumidityMax) {
+    humidity += environment.idealHumidityMax + ' ' + abbreviate(environment.idealHumidityMaxUnit)
+  }
 
-    light = typeof env.lightOnTime !== undefined ? env.lightOnTime + ' ' + abbreviate(env.lightOnTimeUnit) + ' / ' + env.lightOnTimePerTimePeriod + ' ' + abbreviate(env.lightOnTimePerTimePeriodUnit) : ''
+  light = typeof environment.lightOnTime !== undefined ? environment.lightOnTime + ' ' + abbreviate(environment.lightOnTimeUnit) + ' / ' + environment.lightOnTimePerTimePeriod + ' ' + abbreviate(environment.lightOnTimePerTimePeriodUnit) : ''
 
-    pH = env.desiredPH ? env.desiredPH : env.phMinimum ? env.phMinimum : ''
-    if (env.phMinimum && env.phMaximum) {
-      pH += ' - '
-    }
-    if (env.phMaximum) {
-      pH += env.phMaximum
-    }
-    if (pH !== '') {
-      pH += ' pH';
-    }
+  pH = environment.desiredPH ? environment.desiredPH : environment.phMinimum ? environment.phMinimum : ''
+  if (environment.phMinimum && environment.phMaximum) {
+    pH += ' - '
+  }
+  if (environment.phMaximum) {
+    pH += environment.phMaximum
+  }
+  if (pH !== '') {
+    pH += ' pH';
+  }
 
-    electricalConductivity = env.desiredElectricalConductivity ? env.desiredElectricalConductivity + abbreviate(env.desiredElectricalConductivityUnit) : env.electricalConductivityMin ? env.electricalConductivityMin + abbreviate(env.electricalConductivityMinUnit) : ''
-    if (env.electricalConductivityMin && env.electricalConductivityMax) {
-      electricalConductivity += ' - '
-    }
-    if (env.electricalConductivityMax) {
-      electricalConductivity += env.electricalConductivityMax + abbreviate(env.electricalConductivityMaxUnit)
-    }
+  electricalConductivity = environment.desiredElectricalConductivity ? environment.desiredElectricalConductivity + abbreviate(environment.desiredElectricalConductivityUnit) : environment.electricalConductivityMin ? environment.electricalConductivityMin + abbreviate(environment.electricalConductivityMinUnit) : ''
+  if (environment.electricalConductivityMin && environment.electricalConductivityMax) {
+    electricalConductivity += ' - '
+  }
+  if (environment.electricalConductivityMax) {
+    electricalConductivity += environment.electricalConductivityMax + abbreviate(environment.electricalConductivityMaxUnit)
   }
 
   return (

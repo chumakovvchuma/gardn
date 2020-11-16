@@ -17,7 +17,7 @@ export const plantStageResolvers: Resolvers = {
     }
   },
   PlantStage: {
-    environment: ({ id }, _, { dataSources }) => {
+    defaultEnvironment: ({ id }, _, { dataSources }) => {
       const plantStage = dataSources.plantStage.byId({ id });
 
       if (plantStage.environmentId) {

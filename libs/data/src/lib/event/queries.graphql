@@ -11,7 +11,7 @@ query getTargetEvents($eventTargetId: Int!, $eventTargetType: EventTargetType!, 
       ... on PlantStageEventData {
         id, eventTime, previousPlantStage {
           id, name, description
-        }, nextPlantStage {
+        }, plantStage {
           id, name, description
         }
       }
@@ -47,7 +47,7 @@ query getTargetRecentEvents($eventTargetId: Int!, $eventTargetType: EventTargetT
       ... on PlantStageEventData {
         id, eventTime, previousPlantStage {
           id, name, description
-        }, nextPlantStage {
+        }, plantStage {
           id, name, description
         }
       }
