@@ -1,3 +1,4 @@
+import { mockEnvironmentSeed, mockEnvironmentSprout } from '../../../environment/mocks';
 import { 
   plantStageGermination,
   plantStagePlanting,
@@ -19,15 +20,18 @@ export const speciesPlantStagesSeed = [
   }),
   createSpeciesPlantStages({
     speciesId: species1.id,
-    plantStageId: plantStageGermination.id
+    plantStageId: plantStageGermination.id,
+    environmentId: mockEnvironmentSeed.id
   }),
   createSpeciesPlantStages({
     speciesId: species1.id,
-    plantStageId: plantStagePlanting.id
+    plantStageId: plantStagePlanting.id,
+    environmentId: mockEnvironmentSprout.id
   }),
   createSpeciesPlantStages({
     speciesId: species1.id,
-    plantStageId: plantStageSprouting.id
+    plantStageId: plantStageSprouting.id,
+    environmentId: mockEnvironmentSprout.id
   }),
   // Species 2's PlantStages
   createSpeciesPlantStages({
@@ -36,15 +40,18 @@ export const speciesPlantStagesSeed = [
   }),
   createSpeciesPlantStages({
     speciesId: species2.id,
-    plantStageId: plantStageGermination.id
+    plantStageId: plantStageGermination.id,
+    environmentId: mockEnvironmentSeed.id
   }),
   createSpeciesPlantStages({
     speciesId: species2.id,
-    plantStageId: plantStagePlanting.id
+    plantStageId: plantStagePlanting.id,
+    environmentId: mockEnvironmentSprout.id
   }),
   createSpeciesPlantStages({
     speciesId: species2.id,
-    plantStageId: plantStageSprouting.id
+    plantStageId: plantStageSprouting.id,
+    environmentId: mockEnvironmentSprout.id
   }),
   // for full testing, remaining species do not have the optional data PlantStage
 ];
