@@ -26,7 +26,8 @@ export const PlantCurrentStageIdealEnvironment = () => {
     return <div>Loading</div>
   }
 
-  return <PlantCurrentStageIdealEnvironmentUi data={data.currentEnvironment[0].data} />
+  // todo on update API to support singular event(), update this to simplify since its getting events() => event[]
+  return <PlantCurrentStageIdealEnvironmentUi currentEnvironment={data.currentEnvironment} />
 };
 
 export default PlantCurrentStageIdealEnvironment;

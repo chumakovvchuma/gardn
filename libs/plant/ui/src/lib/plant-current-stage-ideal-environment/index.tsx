@@ -38,16 +38,16 @@ const IconContainer = styled.div`
   text-align: center;
 `
 
-export const PlantCurrentStageIdealEnvironment = ({ data }: Pick<GetPlantCurrentPlantStageEnvironmentQuery['currentEnvironment'][number], 'data'>) => {  
-  if (!data || data.__typename !== 'PlantStageEventData') {
-    return (
-      <FlexBox>
-        404 / Missing Environment
-      </FlexBox>
-    )
+export const PlantCurrentStageIdealEnvironment = ({currentEnvironment}: GetPlantCurrentPlantStageEnvironmentQuery) => {  
+  if (currentEnvironment.length === 0 || 
+      currentEnvironment[0]?.data?.__typename !== 'PlantStageEventData' || 
+      currentEnvironment[0]?.data.environment == null || 
+      currentEnvironment[0]?.data.environment == undefined) {
+    // there are no plant stage change events for which an ideal environment would have been set, therefore
+    return null
   }
 
-  const { environment } = data
+  const { environment } = currentEnvironment[0].data
   let water, temperature, humidity, light, pH, electricalConductivity;
 
   water = environment.idealWaterAmount ? environment.idealWaterAmount + abbreviate(environment.idealWaterAmountUnit) + ' / ' + environment.idealWaterAmountPerTimePeriod + abbreviate(environment.idealWaterAmountPerTimePeriodUnit) : ''

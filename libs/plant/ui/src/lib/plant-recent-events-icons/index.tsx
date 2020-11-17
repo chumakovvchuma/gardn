@@ -84,7 +84,7 @@ export const PlantRecentEventsIcons = ({ currentEnvironment, events, lightChange
   }
 
   const eventTypeNeedsAttention = (eventType: EventType): boolean => {
-    if (currentEnvironment === null || currentEnvironment[0].data.__typename !== 'PlantStageEventData') {
+    if (currentEnvironment === null || currentEnvironment[0]?.data == undefined || currentEnvironment[0].data.__typename !== 'PlantStageEventData') {
       return false // no data to compare against as to determine if event type needs attention
     }
 
