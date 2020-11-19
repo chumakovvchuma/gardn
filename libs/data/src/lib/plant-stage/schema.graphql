@@ -7,9 +7,12 @@ type PlantStage implements BaseDbModel {
 
   defaultEstimateLength: Int
   defaultEnvironment: Environment
+
+  estimateLength: Int
+  environment: Environment
 }
 
 type Query {
   plantStages: [PlantStage]
-  plantStage(id: Int!): PlantStage
+  plantStage(id: Int!, speciesId: Int): PlantStage
 }

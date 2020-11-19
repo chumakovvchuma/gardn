@@ -5,7 +5,7 @@ import {
   plantStageSeed,
   plantStageSprouting
 } from '../../../plant-stage/seed-data';
-import { createSpeciesPlantStages } from '../../../species/helpers/create-species-plant-stages';
+import { createDBSpeciesPlantStages } from '../../../species/species-plantstages/helpers/create-species-plant-stages';
 import { species1, species2 } from '../../../species/seed-data';
 
 /**
@@ -14,41 +14,41 @@ import { species1, species2 } from '../../../species/seed-data';
  */
 export const speciesPlantStagesSeed = [
   // Species 1's PlantStages
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species1.id,
     plantStageId: plantStageSeed.id
   }),
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species1.id,
     plantStageId: plantStageGermination.id,
     environmentId: mockEnvironmentSeed.id
   }),
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species1.id,
     plantStageId: plantStagePlanting.id,
     environmentId: mockEnvironmentSprout.id
   }),
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species1.id,
     plantStageId: plantStageSprouting.id,
     environmentId: mockEnvironmentSprout.id
   }),
   // Species 2's PlantStages
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species2.id,
     plantStageId: plantStageSeed.id
   }),
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species2.id,
     plantStageId: plantStageGermination.id,
     environmentId: mockEnvironmentSeed.id
   }),
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species2.id,
     plantStageId: plantStagePlanting.id,
     environmentId: mockEnvironmentSprout.id
   }),
-  createSpeciesPlantStages({
+  createDBSpeciesPlantStages({
     speciesId: species2.id,
     plantStageId: plantStageSprouting.id,
     environmentId: mockEnvironmentSprout.id

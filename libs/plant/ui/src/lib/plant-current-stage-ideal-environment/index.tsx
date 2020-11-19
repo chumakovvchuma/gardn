@@ -38,7 +38,8 @@ const IconContainer = styled.div`
   text-align: center;
 `
 
-export const PlantCurrentStageIdealEnvironment = ({currentEnvironment}: GetPlantCurrentPlantStageEnvironmentQuery) => {  
+export const PlantCurrentStageIdealEnvironment = ({currentEnvironment}: GetPlantCurrentPlantStageEnvironmentQuery) => {
+  // todo on gql update of event() to support filters, sorters, etc -> update this to check for an object, not object in array
   if (currentEnvironment.length === 0 || 
       currentEnvironment[0]?.data?.__typename !== 'PlantStageEventData' || 
       currentEnvironment[0]?.data.environment == null || 

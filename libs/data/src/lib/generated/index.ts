@@ -139,8 +139,13 @@ export type QueryEnvironmentArgs = {
 
 
 export type QueryEventArgs = {
-  eventDataId: Scalars['Int'];
-  eventType: EventType;
+  eventTargetId: Scalars['Int'];
+  eventTargetType: EventTargetType;
+  eventType?: Maybe<EventType>;
+  excludeEventTypes?: Maybe<Array<Maybe<EventType>>>;
+  sortDirection?: Maybe<SortDirection>;
+  eventTimeMinimum?: Maybe<Scalars['Timestamp']>;
+  eventTimeMaximum?: Maybe<Scalars['Timestamp']>;
 };
 
 
@@ -173,6 +178,7 @@ export type QueryPlantArgs = {
 
 export type QueryPlantStageArgs = {
   id: Scalars['Int'];
+  speciesId?: Maybe<Scalars['Int']>;
 };
 
 
@@ -343,6 +349,8 @@ export type PlantStage = BaseDbModel & {
   description?: Maybe<Scalars['String']>;
   defaultEstimateLength?: Maybe<Scalars['Int']>;
   defaultEnvironment?: Maybe<Environment>;
+  estimateLength?: Maybe<Scalars['Int']>;
+  environment?: Maybe<Environment>;
 };
 
 export type Plant = BaseDbModel & {
@@ -2134,7 +2142,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   allSpecies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Species']>>>, ParentType, ContextType>;
   environment?: Resolver<Maybe<ResolversTypes['Environment']>, ParentType, ContextType, RequireFields<QueryEnvironmentArgs, 'id'>>;
   environments?: Resolver<Maybe<Array<Maybe<ResolversTypes['Environment']>>>, ParentType, ContextType>;
-  event?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryEventArgs, 'eventDataId' | 'eventType'>>;
+  event?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryEventArgs, 'eventTargetId' | 'eventTargetType'>>;
   events?: Resolver<Maybe<Array<Maybe<ResolversTypes['Event']>>>, ParentType, ContextType, RequireFields<QueryEventsArgs, 'eventTargetId' | 'eventTargetType'>>;
   lightBulbTemplate?: Resolver<Maybe<ResolversTypes['LightBulbTemplate']>, ParentType, ContextType, RequireFields<QueryLightBulbTemplateArgs, 'id'>>;
   lightBulbTemplates?: Resolver<Maybe<Array<Maybe<ResolversTypes['LightBulbTemplate']>>>, ParentType, ContextType>;
@@ -2284,6 +2292,8 @@ export type PlantStageResolvers<ContextType = any, ParentType extends ResolversP
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   defaultEstimateLength?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   defaultEnvironment?: Resolver<Maybe<ResolversTypes['Environment']>, ParentType, ContextType>;
+  estimateLength?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  environment?: Resolver<Maybe<ResolversTypes['Environment']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
